@@ -1,4 +1,4 @@
-## Web Scraping - Money Control
+## Web Scraping - Using BeautifulSoup
 
 Link Used for Scraping: https://www.moneycontrol.com/india/stockpricequote/
 
