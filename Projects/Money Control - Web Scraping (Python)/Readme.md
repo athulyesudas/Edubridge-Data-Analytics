@@ -2,6 +2,8 @@
 
 Link Used for Scraping: https://www.moneycontrol.com/india/stockpricequote/
 
+Medium Used: Jupyter Notebook (Python)
+
 Objective:
  - Scrap stocks data from the link given above.
  - Scrap stock Name, Current Value, Market Cap, and all other factors which help in picking a good stock.
