@@ -14,4 +14,4 @@ You can run this code daily and join the datasets if you need to analyse the per
 
 You can watch this youtube video if you have any doubt in the above code: https://www.youtube.com/watch?v=nCuPv3tf2Hg&t=750s
 
-Happy Scraping :)
+
