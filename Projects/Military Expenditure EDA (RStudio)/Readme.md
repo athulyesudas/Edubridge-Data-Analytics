@@ -6,7 +6,7 @@ Medium Used for this project: RStudio(R Notebook)
 
 Topic: EDA on Military Expenditure from 1970 to 2020
 
-- OBJECTIVE:
+- ###OBJECTIVE:###
    1. Find the top 10 countries with highest total military spending.
    2. Find the top 10 countries with lowest total military spending.
    3. Find the top 10 countries with highest military spending in each decade.
