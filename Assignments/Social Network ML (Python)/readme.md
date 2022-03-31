@@ -3,7 +3,7 @@
 ### Objective:
  - This assignment is done for learning ML with different libraries in Scikit Learn and for comparing each outcomes.
 
-### Conclusion:
+### Result:
 
  Prediction Accuracy
 
@@ -15,4 +15,7 @@
  
  - KNeighbours Classifier - 85 to 95 % (fluctuates with each run)
 
-From this observation Random forest has the highest accuracy and Logistic Regression has the least accuracy.
+### Conclusion:
+
+ - From this observation Random forest has the highest accuracy and Logistic Regression has the least accuracy.
+
