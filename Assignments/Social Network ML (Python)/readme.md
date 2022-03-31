@@ -18,4 +18,5 @@
 ### Conclusion:
 
  - From this observation Random forest has the highest accuracy and Logistic Regression has the least accuracy.
+ - Also here we can see Random forest has very less or no fluctations in prediction.
 
