@@ -1,3 +1,9 @@
+<!DOCTYPE html>
+<html>
+ <body>
+  
+  <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Assignments/Social%20Network%20ML%20(Python)/social%20network.ipynb"><h2>Social Network ML using Scikit Learn</h2></a>
+
 ## Social Network ML using Scikit Learn
 
 ### Objective:
@@ -20,5 +26,10 @@
 ### Conclusion:
 
  - From this observation Random forest has the highest accuracy and Logistic Regression has the least accuracy.
+ 
+ 
+ 
+ </body>
+</html>
 
 
