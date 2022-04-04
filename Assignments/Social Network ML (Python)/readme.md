@@ -2,7 +2,7 @@
 <html>
  <body>
   
-  <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Assignments/Social%20Network%20ML%20(Python)/social%20network.ipynb"><h2>Social Network ML using Scikit Learn</h2></a>
+  <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Assignments/Social%20Network%20ML%20(Python)/social%20network.ipynb"><h1>Social Network ML using Scikit Learn</h1></a>
 
 
 
