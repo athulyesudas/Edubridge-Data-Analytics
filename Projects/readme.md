@@ -1,8 +1,8 @@
-# Contains all the projects done while learning Data Science at EduBridge India.
-
 ## Projects:
 
 <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Projects/Predicting%20Future%20Sales"><h3>Predicting Future Sales</h3></a>
+
+![alt text](https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Projects/Predicting%20Future%20Sales/Screenshots/predict_future_sales.png?raw=true)
 
 <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Projects/US%20Air%20Pollution%20EDA%20(Python)"><h3>EDA on US Air Pollution</h3></a>
 
