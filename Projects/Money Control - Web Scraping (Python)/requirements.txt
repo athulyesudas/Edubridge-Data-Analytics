@@ -1,0 +1,14 @@
+beautifulsoup4==4.11.1
+brotlipy==0.7.0
+bs4==0.0.1
+certifi==2021.10.8
+conda==4.11.0
+numpy==1.22.3
+pandas==1.4.2
+pycosat==0.6.3
+python-dateutil==2.8.2
+pytz==2022.1
+pywin32==302
+soupsieve==2.3.2.post1
+urllib3==1.26.7
+wincertstore==0.2
