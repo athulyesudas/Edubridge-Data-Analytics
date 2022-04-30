@@ -1,4 +1,4 @@
-Download used: https://www.kaggle.com/datasets/prasertk/military-expenditure-by-country-from-19702020
+Dataset used: https://www.kaggle.com/datasets/prasertk/military-expenditure-by-country-from-19702020
 
 ## EDA on Military Expenditure
 
