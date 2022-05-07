@@ -1,0 +1,219 @@
+---
+title: Video Games Sales Analysis
+---
+
+## Project setup
+_________________
+
+### Load libraries
+* [ggplot](https://ggplot2.tidyverse.org/reference/ggplot.html)
+```{r}
+library("ggplot2")
+```
+
+
+
+### Read the data
+```{r}
+data = read.csv("video_game_sales.csv")
+head(data)
+```
+
+### Discard non-useful data
+Discard the "Rank" column because it is a variable that ordered the global sales value, so there is no point in using it. The "Name" column is also discarded because it has a lesser chance of being a potential for this study and requires considerable work. Finally, all other sales columns are also discarded because the objective is to analyze only the relationship of the global sales value.
+```{r}
+data$Rank <- NULL
+data$Name <- NULL
+data$NA_Sales <- NULL
+data$JP_Sales <- NULL
+data$EU_Sales <- NULL
+data$Other_Sales <- NULL
+```
+
+### Set the correct type of features and drop NA's
+```{r}
+data$Platform <- as.factor(data$Platform)
+data$Genre <- as.factor(data$Genre)
+data$Year <- as.numeric(data$Year)
+```
+## Features
+_________________
+
+### Platform
+
+```{r, fig.width=20,fig.height=7}
+plataformFreq <- as.data.frame(sort(table(data$Platform), decreasing = TRUE))
+ggplot(plataformFreq, aes(x=Var1, y=Freq, fill=Var1))+
+  ggtitle("Barplot of Platform")+
+  xlab("Platform")+
+  ylab("Frequency")+
+  geom_bar(stat="identity")
+```
+
+```{r, fig.width=20,fig.height=7}
+ggplot(subset(data, Platform %in% c("DS", "PS2", "PS3", "Wii", "X360", "PSP", "PS", "PC", "XB", "GBA", "GC", "3DS")), aes(Platform, Global_Sales, fill=Platform))+
+ggtitle("Violin plot of Plataform per Global Sales")+
+geom_violin()+
+ylim(c(0,1))+
+labs(x="Platform", y="Global sales")
+```
+
+In the histogram it is possible to identify platforms (e.g. GG and PCFX) that have a small amount of records and therefore will have inaccurate results. In an implementation of a model, these values can be ignored or aggregated with a new value of type "others". On the violin chart, the number of unique values has been reduced so that you can have a more friendly image. It was also necessary to limit the y to one since the "global sales" field contains many oultiers. Later on, more graphics will be implemented to relate platforms to other attributes, but it is notable that only using the video game platform can more or less likely values be considered.
+
+### Year
+```{r, fig.width=20,fig.height=7}
+ggplot(data, aes(x=Year))+
+  ggtitle("Histogram of Year")+
+  xlab("Year")+
+  ylab("Frequency")+
+  geom_bar(stat="bin")
+```
+
+
+```{r, fig.width=20,fig.height=7}
+yearTable <- as.data.frame(aggregate(Global_Sales ~ Year, data, mean, trim=0.1))
+ggplot(yearTable, aes(x=Year, y=Global_Sales))+
+  ggtitle("Barplot of Year per Global Sales (truncated mean)")+
+  xlab("Year")+
+  ylab("Global Sales")+
+  geom_bar(stat="identity")
+```
+
+There are only a few records before the year 1994 approximately, which makes the average sales a little bit uncertain. It does not make sense for games to sell more than after 2000, since the video game market is only growing. Another hypothesis is that with more games on the market, the market division is bigger and it is difficult to get out of the average. 
+
+```{r, fig.width=20,fig.height=7}
+ggplot(subset(data, Platform %in% c("DS", "PS2", "PS3", "Wii", "X360", "PSP", "PS", "PC", "XB", "GBA", "GC", "3DS")), aes(x=Year, y=Global_Sales, fill=Platform))+
+ggtitle("Multiple barplot of global sales per year separated by platforms")+
+geom_bar(stat="identity")+
+labs(x="Year", y="Global Sales")+
+facet_wrap("Platform")
+```
+
+For each platform, the global sales for each year are influenced by the cycle of the video game. For example, it is possible to identify the same point at the end of the PS and at the beginning of the PS2. But there is a transition period for these platforms that have the same manufacturer, as the chart below depicts. And to be more likely to sell more, a publisher needs to hit the peak of each platform.
+
+```{r, fig.width=20,fig.height=7}
+ggplot(subset(data, Platform %in% c("PS", "PS2", "PS3", "PS4")), aes(x=Year, y=Global_Sales, fill=Platform))+
+ggtitle("Barplot of playstation global sales per year")+
+geom_bar(stat="identity")+
+labs(x="Year", y="Global Sales")
+```
+
+### Genre
+
+```{r, fig.width=20,fig.height=7}
+genreFreq <- as.data.frame(sort(table(data$Genre), decreasing = TRUE))
+ggplot(genreFreq, aes(x=Var1, y=Freq, fill=Var1))+
+  ggtitle("Barplot of Genre")+
+  xlab("Genre")+
+  ylab("Frequency")+
+  geom_bar(stat="identity")
+```
+
+
+```{r, fig.width=20,fig.height=7}
+ggplot(data, aes(Genre, Global_Sales, fill=Genre))+
+ggtitle("Violin plot of Genre per Global Sales")+
+geom_violin()+
+ylim(c(0,1))+
+labs(x="Genre", y="Global sales")
+```
+
+The global sales values do not vary much according to the genre of the game, only Adventure, Puzzle and Strategy have a concentration in lower values.
+
+```{r, fig.width=20,fig.height=7}
+ggplot(
+  subset(data, Platform %in% c('GBA', 'PC', 'Wii', 'X360', 'PS2', 'PS3') &
+          Genre %in% c('Action', 'Sports', 'Misc', 'Role-playing', 'Shooter', 'Adventure')),
+  aes(x=Genre, y=Global_Sales, fill=Genre))+
+  ggtitle("Multiple barplot for global sales per year separated by platforms")+
+geom_bar(stat="identity")+
+labs(x='Genre', y='Global Sales')+
+facet_wrap('Platform')
+```
+
+It is possible to notice that each platform has its genres that tend to sell more. This happens with the Wii for example, which sells more sports games, different action.
+
+```{r, fig.width=20,fig.height=7}
+ggplot(data, aes(x=as.numeric(Year), y=Global_Sales, fill=Genre))+
+ggtitle("Multiple hexagonal plotting for global sales per year separated by genres")+
+geom_bar(stat="identity")+
+labs(x='Year', y='Global Sales')+
+facet_wrap('Genre')
+```
+
+In this plot above, it is noted that the year may influence the sales of certain types. There is also a new possibility when comparing with the chart "Multiple barplot of global sales per year separated by platforms" it is noted that the sales cycle in sports games is similar to that of the Wii platform. Therefore, it is possible that a platform will contribute to the rise of a genre in the sales of video games or that the interest in certain genres will influence the sales of a platform. So if there is a very good experience in playing a certain genre on a platform, it could be that both have a peak in sales. The same goes for the rise of sales in action games with the playstation/xbox cycle.
+
+### Publisher
+
+```{r, fig.width=20,fig.height=7}
+publisherFreq <- as.data.frame(sort(table(data$Publisher), decreasing = TRUE))
+ggplot(subset(publisherFreq, Freq >= 50), aes(x=Var1, y=Freq, fill=Var1))+
+  ggtitle("Barplot of Publisher")+
+  xlab("Publisher")+
+  ylab("Frequency")+
+  coord_flip()+
+  geom_bar(stat="identity")
+```
+```{r, fig.width=20,fig.height=7}
+ggplot(subset(data, Publisher %in% c("Electronic Arts", "Activision", "Namco Bandai Games", "Ubisoft", "Konami Digital Entertainment", "THQ", "Nintendo")), aes(Publisher, Global_Sales, fill=Publisher))+
+ggtitle("Violin plot of Publisher per Global Sales")+
+geom_violin()+
+ylim(c(0,1))+
+labs(x="Publisher", y="Global sales")
+```
+
+Publishers have quite different global sales distributions. Nintendo and EA appear to be the largest concentration of high sales figures.
+
+```{r, fig.width=20,fig.height=7}
+ggplot(
+  subset(data,
+         Publisher %in% c("Electronic Arts", "Activision", "Namco Bandai Games", "Ubisoft", "Konami Digital Entertainment", "Nintendo") &
+         Platform %in% c("DS", "PS2", "PS3", "Wii", "X360", "PSP", "PS", "PC", "XB")),
+  aes(x=Platform, y=Global_Sales, fill=Publisher))+
+ggtitle('Multiple barplots for global sales per genre separated by publishers')+
+geom_bar(stat="identity")+
+labs(x='Genre', y='Global Sales')+
+facet_wrap('Publisher')
+```
+
+It is also possible to see that the publishers had different strategies in relation to the platforms. Note that Nintendo only produced video games for DS and Wii platforms. On the other hand, EA has experienced a bit of everything. It is worth mentioning that a Nintendo opted for platforms that the company itself is also a manufacturer. This makes it possible to hypothesize about a new feature, such as a new "PublisherIsManufacturer" column. There is a example above with Sony and Nintendo:
+
+
+```{r, fig.width=20,fig.height=7}
+data$PublisherIsManufacturer <- as.factor(ifelse(
+  (data$Platform %in% c("PS", "PS1", "PS2", "PS3")
+  & data$Publisher == 'Sony Computer Entertainment')
+  |
+  (data$Platform %in% c("DS", "Wii")
+  & data$Publisher == 'Nintendo'), 1, 0))
+ggplot(data, aes(PublisherIsManufacturer, Global_Sales, fill=PublisherIsManufacturer))+
+ggtitle("Violin plot of 'Publisher is manufacturer' column")+
+geom_violin()+
+ylim(c(0,3))+
+labs(x="Publisher", y="Global sales")
+
+```
+
+As mentioned above, it is just an example with only two manufacturers and there is a difference in values, it may be promising to delve into this new feature.
+
+```{r, fig.width = 12}
+ggplot(
+subset(data, Publisher %in% c("Electronic Arts", "Activision", "Namco Bandai Games", "Ubisoft", "Konami Digital Entertainment", "Nintendo")),
+aes(x=Year, y=Global_Sales, fill=Publisher))+
+ggtitle('Multiple barplots for global sales per year separated by publishers')+
+labs(x='Year', y='Global Sales')+
+geom_bar(stat="identity")+
+facet_wrap('Publisher')
+```
+```{r, fig.width = 12}
+ggplot(
+  subset(data, Publisher %in% c("Electronic Arts", "Activision", "Namco Bandai Games", "Ubisoft", "Konami Digital Entertainment", "Nintendo")),
+  aes(x=Genre, y=Global_Sales, fill=Genre))+
+  ggtitle('Multiple barplots for global sales per genre separated by publishers')+
+geom_bar(stat="identity")+
+labs(x='Genre', y='Global Sales')+
+coord_flip()+
+facet_wrap('Publisher')
+```
+
+Finally, the last graph shows the information that each publisher has its main genre, an Activion for Shooter, Nintendo for Platform and EA for Sports. This is not to say that other platforms may also have been successful with these genres or that the publishers cited have not explored others, but they were references as types of games.
