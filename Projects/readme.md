@@ -1,4 +1,4 @@
-## Projects:
+# Projects:
 
 <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Projects/Predicting%20Future%20Sales"><h3>Predicting Future Sales</h3></a>
 
