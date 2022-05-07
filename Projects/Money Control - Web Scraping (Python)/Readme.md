@@ -1,3 +1,5 @@
+[![forthebadge](https://forthebadge.com/images/badges/made-with-python.svg)](https://forthebadge.com)
+
 ## Web Scraping - Using BS4
 
 Link Used for Scraping: https://www.moneycontrol.com/india/stockpricequote/
