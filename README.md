@@ -8,7 +8,7 @@
 
 <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Projects/Money%20Control%20-%20Web%20Scraping%20(Python)"><h4>Web Scraping Stocks Data</h4></a>
 
-## Assignments:
+### Assignments:
 
 <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Assignments/Social%20Network%20ML%20(Python)"><h4>Social Network ML using Scikit Learn</h4></a>
 
