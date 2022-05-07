@@ -1,4 +1,4 @@
-# Contains all the projects and assignments done while learning Data Science at EduBridge India.
+## Contains all the projects and assignments done while learning Data Science at EduBridge India.
 
 ## Projects:
 
