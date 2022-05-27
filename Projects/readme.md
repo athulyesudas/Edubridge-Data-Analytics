@@ -1,8 +1,8 @@
 # Projects:
 
-<a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Projects/Tableau%20Dashboard"><h3>Tableau Dashboard</h3></a>
+<a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Projects/Walmart%20Retail%20Dashboard"><h3>Tableau Dashboard</h3></a>
 
-![alt text](https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Projects/Tableau%20Dashboard/Preview/walmart%20sales.png?raw=true)
+![alt text](https://github.com/athulyesudas/Edubridge-Data-Analytics/blob/main/Projects/Walmart%20Retail%20Dashboard/Screenshot/scnsht.png?raw=true)
 
 <a href="https://github.com/athulyesudas/Edubridge-Data-Analytics/tree/main/Projects/Excel%20Dashboard"><h3>Excel Dashboard</h3></a>
 
